@@ -13,7 +13,7 @@
         <input *ngIf="item.selectedType" [(ngModel)]="item.value" class="form-control item-control"
           type="{{item.selectedType === 'string' ? 'text' : item.selectedType}}"
           value="{{item.selectedType === 'date' ? '2019-03-04' : ''}}" />
-        <input *ngIf="item.selectedOperator === 6" [(ngModel)]="item.valueTo" class="form-control item-control" type="number" />
+        <input *ngIf="item.selectedOperator == 6" [(ngModel)]="item.valueTo" class="form-control item-control" type="number" />
         <button *ngIf="item.selectedType" class="btn btn-success" (click)="removeItem(i, j)">Remove</button>
       </div>
       <button class="btn btn-primary" (click)="addItem(i)">Add item</button>
