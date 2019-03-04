@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="group" *ngFor="let group of currentGroups; index as i">
+      <div class="item form-group" *ngFor="let item of group.items; index as j">
+        <select #t (change)="onTypeChange(t.value, item)" [(ngModel)]="item.selectedType"
+          class="form-control item-control">
+          <option [ngValue]="undefined" disabled selected hidden>Select data type</option>
+          <option *ngFor="let type of typeList" [value]="type.type">{{type.name}}</option>
+        </select>
+        <select *ngIf="item.selectedType" [(ngModel)]="item.selectedOperator" class="form-control item-control">
+          <option *ngFor="let operator of item.operators" [value]="operator.id">{{operator.name}}</option>
+        </select>
+        <input *ngIf="item.selectedType" class="form-control item-control"
+          type="{{item.selectedType === 'string' ? 'text' : item.selectedType}}"
+          value="{{item.selectedType === 'date' ? '2019-03-04' : ''}}" />
+        <button *ngIf="item.selectedType" class="btn btn-success" (click)="removeItem(i, j)">Remove</button>
+      </div>
+      <button class="btn btn-primary" (click)="addItem(i)">Add item</button>
+    </div>
+    <button class="btn btn-danger add-group-btn" (click)="addGroup()">Add group</button>
+  </div>
+</div>
